@@ -49,6 +49,10 @@ class DecoderPipeline2(object):
         self.asr = Gst.ElementFactory.make("kaldinnet2onlinedecoder", "asr")
         self.fakesink = Gst.ElementFactory.make("fakesink", "fakesink")
 
+        if self.asr == None:
+            print("run  export GST_PLUGIN_PATH=~/tools/gst-kaldi-nnet2-online/src")
+            exit(-1)
+ 
         # This needs to be set first
         if "use-threaded-decoder" in conf["decoder"]:
             self.asr.set_property("use-threaded-decoder", conf["decoder"]["use-threaded-decoder"])
@@ -212,6 +216,9 @@ class DecoderPipeline2(object):
 
     def set_full_result_handler(self, handler):
         self.full_result_handler = handler
+
+    def set_word_handler(self, handler):
+        self.word_handler = handler
 
     def set_eos_handler(self, handler, user_data=None):
         self.eos_handler = (handler, user_data)

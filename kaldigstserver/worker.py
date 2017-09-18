@@ -356,8 +356,8 @@ def main():
             ws.connect()
             ws.run_forever()
         except Exception:
-            logger.error("Couldn't connect to server, waiting for %d seconds", CONNECT_TIMEOUT)
-            time.sleep(CONNECT_TIMEOUT)
+            logger.error("Couldn't connect to server, exiting")
+            exit(0)
         # fixes a race condition
         time.sleep(1)
 
