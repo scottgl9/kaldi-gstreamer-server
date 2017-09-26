@@ -66,7 +66,10 @@ class MyClient(WebSocketClient):
 
     def received_message(self, m):
         response = json.loads(str(m))
-        #print >> sys.stderr, "RESPONSE:", response
+
+        if 'adaptation_state' in response:
+            del response['adaptation_state']
+        print(response)
         #print >> sys.stderr, "JSON was:", m
         if response['status'] == 0:
             if 'result' in response:
@@ -79,7 +82,7 @@ class MyClient(WebSocketClient):
                     print_trans = trans.replace("\n", "\\n")
                     if len(print_trans) > 80:
                         print_trans = "... %s" % print_trans[-76:]
-                    print >> sys.stderr, '\r%s' % print_trans,
+                    #print >> sys.stderr, '\r%s' % print_trans,
             if 'adaptation_state' in response:
                 if self.save_adaptation_state_filename:
                     print >> sys.stderr, "Saving adaptation state to %s" % self.save_adaptation_state_filename

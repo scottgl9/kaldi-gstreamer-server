@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 CONNECT_TIMEOUT = 5
 SILENCE_TIMEOUT = 5
-USE_NNET2 = False
+USE_NNET2 = True
 
 class ServerWebsocket(WebSocketClient):
     STATE_CREATED = 0

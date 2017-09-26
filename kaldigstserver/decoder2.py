@@ -68,7 +68,7 @@ class DecoderPipeline2(object):
                 logger.info("Setting decoder property: %s = %s" % (key, val))
                 self.asr.set_property(key, val)
 
-        self.appsrc.set_property("is-live", True)
+        self.appsrc.set_property("is-live", False) #True)
         self.filesink.set_property("location", "/dev/null")
         logger.info('Created GStreamer elements')
 

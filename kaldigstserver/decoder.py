@@ -54,7 +54,7 @@ class DecoderPipeline(object):
             logger.info("Setting decoder property: %s = %s" % (key, val))
             self.asr.set_property(key, val)
 
-        self.appsrc.set_property("is-live", True)
+        self.appsrc.set_property("is-live", False) #True)
         self.filesink.set_property("location", "/dev/null")
         self.cutter.set_property("leaky", False)
         self.cutter.set_property("pre-length",   1000 * 1000000)
